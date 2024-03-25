@@ -1,0 +1,93 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id'ly.img.android.sdk'
+
+}
+
+imglyConfig {
+
+    vesdk {
+        enabled(true)
+        licensePath null
+    }
+
+    modules {
+        include("ui:core")
+        include("ui:text")
+        include("ui:focus")
+        include("ui:frame")
+
+        include("ui:brush")
+        include("ui:filter")
+        include("ui:sticker")
+        include("ui:overlay")
+        include("ui:transform")
+        include("ui:adjustment")
+        include("ui:text-design")
+
+        include("ui:video-trim")
+        include("ui:video-library")
+        include("ui:video-composition")
+        include("ui:audio-composition")
+        include("ui:giphy-sticker")
+
+        include("backend:serializer")
+        include("backend:headless")
+        include("backend:background-removal")
+        include("backend:sticker-smart")
+        include("backend:sticker-animated")
+
+        include("assets:font-basic")
+        include("assets:frame-basic")
+        include("assets:filter-basic")
+        include("assets:overlay-basic")
+        include("assets:sticker-shapes")
+        include("assets:sticker-emoticons")
+    }
+}
+android {
+    namespace 'com.example.videoediting'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.videoediting"
+        minSdk 21
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures{
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    def lifecycle_version = "2.4.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+}
